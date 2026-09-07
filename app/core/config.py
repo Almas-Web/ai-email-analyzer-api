@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     POSTGRES_PORT: str
     POSTGRES_DB: str
 
+    DATABASE_URL: str | None = None
+
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
@@ -18,9 +20,12 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str
 
     @property
-    def DATABASE_URL(self) -> str:
+    def database_url(self) -> str:
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
+
         return (
-            f"postgresql://{self.POSTGRES_USER}:"
+            f"postgresql+psycopg2://{self.POSTGRES_USER}:"
             f"{self.POSTGRES_PASSWORD}@"
             f"{self.POSTGRES_SERVER}:"
             f"{self.POSTGRES_PORT}/"

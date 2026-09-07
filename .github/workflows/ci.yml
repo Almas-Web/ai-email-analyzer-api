@@ -41,6 +41,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest httpx email-validator python-multipart
 
+    - name: Remove local environment file
+      run: rm -f .env
+
     - name: Run Tests with Pytest
       env:
         PROJECT_NAME: AI Email Analyzer API

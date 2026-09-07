@@ -39,7 +39,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest httpx email-validator
+        pip install pytest httpx email-validator python-multipart
 
     - name: Run Tests with Pytest
       env:

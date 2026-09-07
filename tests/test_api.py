@@ -1,12 +1,12 @@
 import os
 
-# Set all required dummy environment variables to prevent validation errors during test collection
+# Set proper environment variables for local testing (using port 5433 as configured in docker-compose)
 os.environ["GEMINI_API_KEY"] = "test_dummy_gemini_api_key_for_testing"
-os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:postgres@localhost:5432/email_analyzer"
+os.environ["DATABASE_URL"] = "postgresql+psycopg2://postgres:postgres@localhost:5433/email_analyzer"
 os.environ["POSTGRES_USER"] = "postgres"
 os.environ["POSTGRES_PASSWORD"] = "postgres"
 os.environ["POSTGRES_SERVER"] = "localhost"
-os.environ["POSTGRES_PORT"] = "5432"
+os.environ["POSTGRES_PORT"] = "5433"
 os.environ["POSTGRES_DB"] = "email_analyzer"
 os.environ["SECRET_KEY"] = "test_dummy_secret_key_for_jwt_testing_purposes"
 

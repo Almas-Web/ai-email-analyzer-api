@@ -1,7 +1,22 @@
+version: '3.8'
+
 services:
+  web:
+    build: .
+    container_name: ai_email_api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/email_analyzer
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - db
+
   db:
     image: postgres:16
     container_name: ai_email_db
+    restart: always
     environment:
       POSTGRES_DB: email_analyzer
       POSTGRES_USER: postgres
